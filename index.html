@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D - Digitális Diák Derbi 2026</title>
+    <title>Mi és a MI a mindennapjainkban</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #FFFFFF;
@@ -28,81 +28,86 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             background-color: var(--bg);
             color: var(--text);
             overflow-x: hidden;
+            line-height: 1.7;
         }
 
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.2;
         }
 
-        /* Animated background */
-        .hero-bg {
-            background: 
-                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(37, 99, 235, 0.15), transparent),
-                radial-gradient(ellipse 60% 40% at 80% 50%, rgba(245, 158, 11, 0.08), transparent),
-                linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
-        }
-
-        /* Floating orbs */
-        .orb {
+        /* Animated Background Elements */
+        .bg-shape {
             position: absolute;
             border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.6;
-            animation: float 20s ease-in-out infinite;
+            filter: blur(80px);
+            opacity: 0.5;
+            pointer-events: none;
         }
 
-        .orb-1 {
+        .bg-shape-1 {
+            width: 600px;
+            height: 600px;
+            background: rgba(37, 99, 235, 0.12);
+            top: -200px;
+            right: -200px;
+            animation: morphFloat 25s ease-in-out infinite;
+        }
+
+        .bg-shape-2 {
+            width: 500px;
+            height: 500px;
+            background: rgba(245, 158, 11, 0.1);
+            bottom: 20%;
+            left: -150px;
+            animation: morphFloat 20s ease-in-out infinite reverse;
+        }
+
+        .bg-shape-3 {
             width: 400px;
             height: 400px;
-            background: rgba(37, 99, 235, 0.2);
-            top: -100px;
-            right: -100px;
-            animation-delay: 0s;
-        }
-
-        .orb-2 {
-            width: 300px;
-            height: 300px;
-            background: rgba(245, 158, 11, 0.15);
-            bottom: 10%;
-            left: -50px;
-            animation-delay: -7s;
-        }
-
-        .orb-3 {
-            width: 250px;
-            height: 250px;
-            background: rgba(100, 116, 139, 0.15);
-            top: 60%;
+            background: rgba(100, 116, 139, 0.1);
+            top: 50%;
             right: 10%;
-            animation-delay: -14s;
+            animation: morphFloat 30s ease-in-out infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(30px, -30px) scale(1.05); }
-            50% { transform: translate(-20px, 20px) scale(0.95); }
-            75% { transform: translate(20px, 30px) scale(1.02); }
+        @keyframes morphFloat {
+            0%, 100% { 
+                transform: translate(0, 0) scale(1) rotate(0deg); 
+                border-radius: 50%;
+            }
+            25% { 
+                transform: translate(50px, -50px) scale(1.1) rotate(5deg); 
+                border-radius: 40% 60% 60% 40%;
+            }
+            50% { 
+                transform: translate(-30px, 30px) scale(0.95) rotate(-5deg); 
+                border-radius: 60% 40% 40% 60%;
+            }
+            75% { 
+                transform: translate(20px, 50px) scale(1.05) rotate(3deg); 
+                border-radius: 45% 55% 55% 45%;
+            }
         }
 
-        /* Grid pattern */
-        .grid-pattern {
+        /* Grid Pattern Overlay */
+        .grid-overlay {
             background-image: 
-                linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
+                radial-gradient(circle at 1px 1px, rgba(37, 99, 235, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
         }
 
-        /* Reveal animations */
+        /* Reveal Animations */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(50px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .reveal.visible {
@@ -120,8 +125,23 @@
         .reveal-delay-8 { transition-delay: 0.8s; }
         .reveal-delay-9 { transition-delay: 0.9s; }
 
-        /* Card hover effects */
-        .ai-card {
+        /* Hero Text Animation */
+        .hero-text {
+            background: linear-gradient(135deg, var(--text) 0%, var(--primary) 50%, var(--accent) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Usage Cards */
+        .usage-card {
             background: var(--bg);
             border: 1px solid var(--border);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -129,83 +149,165 @@
             overflow: hidden;
         }
 
-        .ai-card::before {
+        .usage-card::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            inset: 0;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.03), rgba(245, 158, 11, 0.03));
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        .ai-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.2);
+        .usage-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.15);
             border-color: var(--primary);
         }
 
-        .ai-card:hover::before {
-            transform: scaleX(1);
+        .usage-card:hover::after {
+            opacity: 1;
         }
 
-        .ai-card .icon-wrapper {
+        .usage-card .icon-box {
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .ai-card:hover .icon-wrapper {
-            transform: scale(1.1) rotate(-5deg);
+        .usage-card:hover .icon-box {
+            transform: scale(1.15) rotate(5deg);
             background: var(--primary);
         }
 
-        .ai-card:hover .icon-wrapper svg {
+        .usage-card:hover .icon-box svg {
             stroke: white;
         }
 
-        /* Timeline */
-        .timeline-item {
+        /* Diary Timeline */
+        .diary-entry {
             position: relative;
-            padding-left: 40px;
+            padding-left: 50px;
+            transition: all 0.3s ease;
         }
 
-        .timeline-item::before {
+        .diary-entry::before {
             content: '';
             position: absolute;
-            left: 12px;
-            top: 40px;
-            bottom: -20px;
+            left: 18px;
+            top: 60px;
+            bottom: -30px;
             width: 2px;
             background: linear-gradient(180deg, var(--primary), transparent);
         }
 
-        .timeline-item:last-child::before {
+        .diary-entry:last-child::before {
             display: none;
         }
 
-        .timeline-dot {
+        .diary-marker {
             position: absolute;
             left: 0;
-            top: 8px;
-            width: 26px;
-            height: 26px;
+            top: 15px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             background: var(--bg);
             border: 3px solid var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 14px;
             transition: all 0.3s ease;
+            z-index: 2;
         }
 
-        .timeline-item:hover .timeline-dot {
+        .diary-entry:hover .diary-marker {
             background: var(--primary);
+            color: white;
             transform: scale(1.2);
         }
 
-        /* Button styles */
+        .diary-content {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .diary-entry:hover .diary-content {
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Generation Cards */
+        .gen-card {
+            background: var(--bg);
+            border-radius: 20px;
+            padding: 32px;
+            border: 2px solid var(--border);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .gen-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 80px;
+            font-family: 'Outfit', sans-serif;
+            color: var(--border);
+            line-height: 1;
+            transition: color 0.3s ease;
+        }
+
+        .gen-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .gen-card:hover::before {
+            color: rgba(37, 99, 235, 0.2);
+        }
+
+        /* Question Cards */
+        .question-card {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(245, 158, 11, 0.05));
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .question-card:hover {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(245, 158, 11, 0.1));
+            border-color: var(--accent);
+        }
+
+        .question-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(245, 158, 11, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .question-card:hover .question-icon {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .question-card:hover .question-icon svg {
+            stroke: white;
+        }
+
+        /* Buttons */
         .btn-primary {
             background: var(--primary);
             color: white;
@@ -214,95 +316,88 @@
             transition: all 0.3s ease;
         }
 
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
         .btn-primary:hover {
-            background: #1D4ED8;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.5);
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px -10px rgba(37, 99, 235, 0.4);
         }
 
         .btn-primary:active {
-            transform: translateY(0);
+            transform: translateY(-1px);
         }
 
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            transition: all 0.3s ease;
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            color: var(--secondary);
+            transition: color 0.3s ease;
         }
 
-        .btn-secondary:hover {
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
             background: var(--primary);
-            color: white;
+            transition: width 0.3s ease;
         }
 
-        /* Info card */
-        .info-card {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(245, 158, 11, 0.03));
-            border-left: 4px solid var(--primary);
+        .nav-link:hover {
+            color: var(--primary);
         }
 
-        /* Accent highlight */
-        .highlight {
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            z-index: 1000;
+            transform-origin: left;
+        }
+
+        /* Accent Highlight */
+        .accent-highlight {
             position: relative;
             display: inline;
         }
 
-        .highlight::after {
+        .accent-highlight::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: 2px;
             left: 0;
             width: 100%;
-            height: 8px;
-            background: rgba(245, 158, 11, 0.3);
+            height: 10px;
+            background: rgba(245, 158, 11, 0.25);
             z-index: -1;
-            transform: skewX(-5deg);
+            transform: skewX(-5deg) scaleX(1);
+            transition: all 0.3s ease;
         }
 
-        /* Nav scroll effect */
-        .nav-scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Counter animation */
-        .counter {
-            font-variant-numeric: tabular-nums;
-        }
-
-        /* Focus states */
+        /* Focus States */
         a:focus-visible,
         button:focus-visible {
             outline: 2px solid var(--primary);
-            outline-offset: 2px;
+            outline-offset: 3px;
         }
 
-        /* Reduced motion */
+        /* Reduced Motion */
         @media (prefers-reduced-motion: reduce) {
-            .orb,
+            .bg-shape,
             .reveal,
-            .ai-card,
-            .ai-card::before,
-            .timeline-dot,
+            .usage-card,
+            .diary-entry,
+            .gen-card,
+            .question-card,
             .btn-primary,
-            .btn-primary::before {
+            .hero-text {
                 animation: none;
                 transition: none;
             }
@@ -313,9 +408,9 @@
             }
         }
 
-        /* Scrollbar */
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
         }
 
         ::-webkit-scrollbar-track {
@@ -324,7 +419,7 @@
 
         ::-webkit-scrollbar-thumb {
             background: var(--secondary);
-            border-radius: 4px;
+            border-radius: 5px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
@@ -333,172 +428,179 @@
     </style>
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Background Elements -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+        <div class="bg-shape bg-shape-3"></div>
+    </div>
+    <div class="fixed inset-0 grid-overlay pointer-events-none"></div>
+
     <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 md:h-20">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-[#2563EB] to-[#F59E0B] flex items-center justify-center">
-                        <span class="text-white font-bold text-lg">3D</span>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-[#E2E8F0]">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#hero" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#2563EB] to-[#F59E0B] flex items-center justify-center transition-transform group-hover:scale-110">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
                     </div>
-                    <span class="font-semibold text-[#111827] hidden sm:block">Digitális Diák Derbi</span>
-                </div>
+                    <span class="font-semibold text-[#111827] hidden sm:block">Mi és a MI</span>
+                </a>
+                
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="#rolunk" class="text-[#64748B] hover:text-[#2563EB] transition-colors font-medium">A versenyről</a>
-                    <a href="#mi-hasznalat" class="text-[#64748B] hover:text-[#2563EB] transition-colors font-medium">MI a mindennapokban</a>
-                    <a href="#fordulok" class="text-[#64748B] hover:text-[#2563EB] transition-colors font-medium">Fordulók</a>
-                    <a href="#jelentkezes" class="btn-primary px-5 py-2.5 rounded-lg font-semibold">Jelentkezes</a>
+                    <a href="#szemelyes" class="nav-link font-medium">Személyes</a>
+                    <a href="#hasznalat" class="nav-link font-medium">Használat</a>
+                    <a href="#naplo" class="nav-link font-medium">AI-Napló</a>
+                    <a href="#generaciok" class="nav-link font-medium">Generációk</a>
+                    <a href="#kerdesek" class="nav-link font-medium">Kérdések</a>
                 </div>
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100" aria-label="Menu">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-gray-100" aria-label="Menü megnyitása">
+                    <svg class="w-6 h-6 text-[#111827]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
                 </button>
             </div>
-        </div>
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-100">
-            <div class="px-4 py-4 space-y-3">
-                <a href="#rolunk" class="block py-2 text-[#64748B] hover:text-[#2563EB] font-medium">A versenyről</a>
-                <a href="#mi-hasznalat" class="block py-2 text-[#64748B] hover:text-[#2563EB] font-medium">MI a mindennapokban</a>
-                <a href="#fordulok" class="block py-2 text-[#64748B] hover:text-[#2563EB] font-medium">Fordulók</a>
-                <a href="#jelentkezes" class="btn-primary block text-center px-5 py-2.5 rounded-lg font-semibold">Jelentkezes</a>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-[#E2E8F0] pt-4">
+                <div class="flex flex-col gap-3">
+                    <a href="#szemelyes" class="nav-link font-medium py-2">Személyes</a>
+                    <a href="#hasznalat" class="nav-link font-medium py-2">Használat</a>
+                    <a href="#naplo" class="nav-link font-medium py-2">AI-Napló</a>
+                    <a href="#generaciok" class="nav-link font-medium py-2">Generációk</a>
+                    <a href="#kerdesek" class="nav-link font-medium py-2">Kérdések</a>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="hero-bg grid-pattern min-h-screen relative overflow-hidden">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-        
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
-            <div class="text-center">
-                <div class="reveal reveal-delay-1 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2563EB]/10 text-[#2563EB] text-sm font-semibold mb-6">
-                    <span class="w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse"></span>
-                    11. Digitális Témahét
-                </div>
-                
-                <h1 class="reveal reveal-delay-2 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-[#111827] mb-6 tracking-tight">
-                    <span class="text-[#2563EB]">3D</span> Digitális<br>
-                    <span class="highlight">Diák Derbi</span>
-                </h1>
-                
-                <p class="reveal reveal-delay-3 text-xl md:text-2xl text-[#64748B] max-w-3xl mx-auto mb-8 leading-relaxed">
-                    Az MSzC Gépészeti Technikum és Kollégium versenye a Mátészalkai Szakképzési Centrum diákjai számára
-                </p>
+    <section id="hero" class="min-h-screen flex items-center justify-center relative pt-20">
+        <div class="max-w-6xl mx-auto px-6 py-20 text-center relative z-10">
+            <div class="reveal">
+                <span class="inline-block px-4 py-2 rounded-full bg-[#2563EB]/10 text-[#2563EB] text-sm font-semibold mb-6">
+                    Digitális Témahét 2026
+                </span>
+            </div>
+            
+            <h1 class="reveal reveal-delay-1 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-[#111827] mb-6">
+                Mi és a <span class="hero-text">MI</span>
+                <br>a mindennapjainkban
+            </h1>
+            
+            <p class="reveal reveal-delay-2 text-xl md:text-2xl text-[#64748B] max-w-3xl mx-auto mb-10">
+                Egy személyes utazás a mesterséges intelligencia világába — nem úgy, ahogy a tankönyvek írják, hanem ahogy mi éljük meg minden nap.
+            </p>
 
-                <div class="reveal reveal-delay-4 flex flex-col sm:flex-row gap-4 justify-center mb-16">
-                    <a href="#jelentkezes" class="btn-primary px-8 py-4 rounded-xl font-semibold text-lg">
-                        Jelentkezem a versenyre
-                    </a>
-                    <a href="#rolunk" class="btn-secondary px-8 py-4 rounded-xl font-semibold text-lg">
-                        Bővebb információ
-                    </a>
-                </div>
+            <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#szemelyes" class="btn-primary px-8 py-4 rounded-xl font-semibold text-lg inline-flex items-center justify-center gap-2">
+                    Fedezd fel a történetet
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                    </svg>
+                </a>
+                <a href="#naplo" class="px-8 py-4 rounded-xl font-semibold text-lg border-2 border-[#2563EB] text-[#2563EB] hover:bg-[#2563EB] hover:text-white transition-all inline-flex items-center justify-center">
+                    AI-Napló olvasása
+                </a>
+            </div>
 
-                <!-- Quick stats -->
-                <div class="reveal reveal-delay-5 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-[#E2E8F0]">
-                        <div class="text-3xl md:text-4xl font-bold text-[#2563EB] counter" data-target="2026">2026</div>
-                        <div class="text-[#64748B] text-sm mt-1">március 27.</div>
-                    </div>
-                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-[#E2E8F0]">
-                        <div class="text-3xl md:text-4xl font-bold text-[#2563EB]">2</div>
-                        <div class="text-[#64748B] text-sm mt-1">forduló</div>
-                    </div>
-                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-[#E2E8F0]">
-                        <div class="text-3xl md:text-4xl font-bold text-[#2563EB]">3</div>
-                        <div class="text-[#64748B] text-sm mt-1">fős csapatok</div>
-                    </div>
-                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-[#E2E8F0]">
-                        <div class="text-3xl md:text-4xl font-bold text-[#F59E0B]">10</div>
-                        <div class="text-[#64748B] text-sm mt-1">perces bemutató</div>
-                    </div>
+            <!-- Floating Stats -->
+            <div class="reveal reveal-delay-4 grid grid-cols-3 gap-4 max-w-2xl mx-auto mt-16">
+                <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-[#E2E8F0]">
+                    <div class="text-3xl md:text-4xl font-bold text-[#2563EB]">7</div>
+                    <div class="text-[#64748B] text-sm">napos napló</div>
+                </div>
+                <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-[#E2E8F0]">
+                    <div class="text-3xl md:text-4xl font-bold text-[#F59E0B]">9</div>
+                    <div class="text-[#64748B] text-sm">használati mód</div>
+                </div>
+                <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-[#E2E8F0]">
+                    <div class="text-3xl md:text-4xl font-bold text-[#2563EB]">3</div>
+                    <div class="text-[#64748B] text-sm">generáció</div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Scroll indicator -->
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#64748B]">
-            <span class="text-sm font-medium">Görgess tovább</span>
-            <div class="w-6 h-10 rounded-full border-2 border-[#64748B] flex justify-center pt-2">
-                <div class="w-1.5 h-3 rounded-full bg-[#2563EB] animate-bounce"></div>
-            </div>
-        </div>
-    </header>
-
-    <!-- About Section -->
-    <section id="rolunk" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Personal Section -->
+    <section id="szemelyes" class="py-24 relative">
+        <div class="max-w-6xl mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
-                    <span class="reveal inline-block px-4 py-1.5 rounded-full bg-[#F59E0B]/10 text-[#F59E0B] text-sm font-semibold mb-4">
-                        A versenyről
+                    <span class="reveal inline-block px-4 py-2 rounded-full bg-[#F59E0B]/10 text-[#F59E0B] text-sm font-semibold mb-6">
+                        Személyes történet
                     </span>
-                    <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl font-bold text-[#111827] mb-6 leading-tight">
-                        Mi és a MI a mindennapjainkban
+                    <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl font-bold text-[#111827] mb-6">
+                        Mit jelent <span class="accent-highlight">számomra</span> az MI?
                     </h2>
-                    <p class="reveal reveal-delay-2 text-lg text-[#64748B] mb-6 leading-relaxed">
-                        A verseny célja a nem csak informatika és távközlés ágazaton tanuló, de informatika iránt érdeklődő diákok munkájának és eredményeinek elismerése, valamint centrum szintű informatikai szakmai közösség építése.
-                    </p>
-                    <div class="reveal reveal-delay-3 info-card rounded-xl p-6 mb-6">
-                        <h3 class="font-semibold text-[#111827] mb-2">Kiknek szól?</h3>
-                        <p class="text-[#64748B]">
-                            Szeretettel várjuk azokat a Mátészalkai Szakképzési Centrum tagintézményeiben tanuló diákokat és oktatóikat, akik érdeklődnek az informatikai újdonságok iránt és szívesen megmérettetnék magukat egy játékos, informatikai feladatokból álló versenyen.
+                    <div class="reveal reveal-delay-2 space-y-4 text-lg text-[#64748B]">
+                        <p>
+                            Amikor először találkoztam a ChatGPT-vel, úgy éreztem, mintha egy tudományos-fantasztikus filmben landoltam volna. Egy géppel beszélgetni, ami ténylegesen érti amit mondok? Ez a jövő volt.
+                        </p>
+                        <p>
+                            De azóta rájöttem, hogy az MI nem csak egy robot, ami válaszokat ad. Ez egy <strong class="text-[#111827]">tükröt tart elém</strong> — mutatja, hogyan gondolkodom, mit keresek, milyen a ízlésem. Amikor a Spotify lejátszási listámat állítja össze, amikor a Google Maps kikerüli a dugót, amikor a telefonom arcfelismerése kinyitja a készüléket.
+                        </p>
+                        <p>
+                            Az MI <strong class="text-[#111827]">csendes segítőtárs</strong> lett az életemben. De vajon mennyire vagyok tudatában ennek? És mit szólnak ehhez a szüleim, nagyszüleim?
                         </p>
                     </div>
-                    <p class="reveal reveal-delay-4 text-[#64748B]">
-                        <strong class="text-[#111827]">Tagintézményenként maximum kettő, 3 fős csapatot várunk.</strong>
-                    </p>
                 </div>
-                
-                <div class="reveal reveal-delay-2">
+
+                <div class="reveal reveal-delay-3 relative">
                     <div class="bg-gradient-to-br from-[#2563EB]/5 to-[#F59E0B]/5 rounded-3xl p-8 border border-[#E2E8F0]">
-                        <h3 class="font-semibold text-xl text-[#111827] mb-6 flex items-center gap-3">
-                            <svg class="w-6 h-6 text-[#2563EB]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            </svg>
-                            Helyszín és időpont
+                        <div class="absolute -top-4 -right-4 w-24 h-24 bg-[#2563EB]/10 rounded-full blur-2xl"></div>
+                        <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-[#F59E0B]/10 rounded-full blur-2xl"></div>
+                        
+                        <h3 class="text-xl font-bold text-[#111827] mb-6 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-[#2563EB] flex items-center justify-center">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            Gyors felismerések
                         </h3>
+                        
                         <div class="space-y-4">
-                            <div class="flex items-start gap-4 p-4 bg-white rounded-xl">
-                                <div class="w-12 h-12 rounded-lg bg-[#2563EB]/10 flex items-center justify-center shrink-0">
-                                    <svg class="w-6 h-6 text-[#2563EB]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            <div class="bg-white rounded-xl p-4 border border-[#E2E8F0] flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-lg bg-[#F59E0B]/10 flex items-center justify-center shrink-0 mt-1">
+                                    <svg class="w-4 h-4 text-[#F59E0B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                                     </svg>
                                 </div>
                                 <div>
-                                    <div class="font-semibold text-[#111827]">Időpont</div>
-                                    <div class="text-[#64748B]">2026. március 27. péntek 9 óra</div>
+                                    <div class="font-semibold text-[#111827]">Mindenhol ott van</div>
+                                    <div class="text-[#64748B] text-sm">A social media algoritmusoktól a navigációig</div>
                                 </div>
                             </div>
-                            <div class="flex items-start gap-4 p-4 bg-white rounded-xl">
-                                <div class="w-12 h-12 rounded-lg bg-[#F59E0B]/10 flex items-center justify-center shrink-0">
-                                    <svg class="w-6 h-6 text-[#F59E0B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            
+                            <div class="bg-white rounded-xl p-4 border border-[#E2E8F0] flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-lg bg-[#2563EB]/10 flex items-center justify-center shrink-0 mt-1">
+                                    <svg class="w-4 h-4 text-[#2563EB]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                                     </svg>
                                 </div>
                                 <div>
-                                    <div class="font-semibold text-[#111827]">Helyszín</div>
-                                    <div class="text-[#64748B]">MSzC Gépészeti Technikum és Kollégium</div>
-                                    <div class="text-[#64748B] text-sm">4700 Mátészalka, Kölcsey u. 12.</div>
+                                    <div class="font-semibold text-[#111827]">Nem varázslat</div>
+                                    <div class="text-[#64748B] text-sm">Eszköz, amivel együtt kell tanulnunk élni</div>
                                 </div>
                             </div>
-                            <div class="flex items-start gap-4 p-4 bg-white rounded-xl">
-                                <div class="w-12 h-12 rounded-lg bg-[#2563EB]/10 flex items-center justify-center shrink-0">
-                                    <svg class="w-6 h-6 text-[#2563EB]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            
+                            <div class="bg-white rounded-xl p-4 border border-[#E2E8F0] flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-lg bg-[#F59E0B]/10 flex items-center justify-center shrink-0 mt-1">
+                                    <svg class="w-4 h-4 text-[#F59E0B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
                                 </div>
                                 <div>
-                                    <div class="font-semibold text-[#111827]">Kapcsolattartó</div>
-                                    <div class="text-[#64748B]">Jakabné Márton Klára</div>
-                                    <a href="mailto:jakabneklara@gmail.com" class="text-[#2563EB] hover:underline text-sm">jakabneklara@gmail.com</a>
-                                    <div class="text-[#64748B] text-sm">+36 20 524 4977</div>
+                                    <div class="font-semibold text-[#111827]">Kérdések maradnak</div>
+                                    <div class="text-[#64748B] text-sm">Felelősség, etika, jövő — ezekről beszélni kell</div>
                                 </div>
                             </div>
                         </div>
@@ -509,337 +611,175 @@
     </section>
 
     <!-- AI Usage Section -->
-    <section id="mi-hasznalat" class="py-24 bg-gradient-to-b from-[#F8FAFC] to-white relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="hasznalat" class="py-24 bg-gradient-to-b from-[#F8FAFC] to-white relative">
+        <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
-                <span class="reveal inline-block px-4 py-1.5 rounded-full bg-[#2563EB]/10 text-[#2563EB] text-sm font-semibold mb-4">
-                    MI a mindennapokban
+                <span class="reveal inline-block px-4 py-2 rounded-full bg-[#2563EB]/10 text-[#2563EB] text-sm font-semibold mb-6">
+                    Gyakorlati alkalmazások
                 </span>
                 <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl font-bold text-[#111827] mb-4">
-                    Hogyan használd az MI-t?
+                    Hogyan használjuk az MI-t?
                 </h2>
                 <p class="reveal reveal-delay-2 text-xl text-[#64748B] max-w-2xl mx-auto">
-                    Fedezd fel az MI számos lehetőségét a mindennapi életben
+                    Az MI nem csak a jövő zenéje — itt van a jelenben, és sokféleképpen segít minket
                 </p>
             </div>
 
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="ai-cards">
-                <!-- AI cards will be rendered by JS -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="usageCards">
+                <!-- Cards rendered by JS -->
             </div>
         </div>
     </section>
 
-    <!-- Competition Rounds Section -->
-    <section id="fordulok" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- AI Diary Section -->
+    <section id="naplo" class="py-24 relative">
+        <div class="max-w-4xl mx-auto px-6">
             <div class="text-center mb-16">
-                <span class="reveal inline-block px-4 py-1.5 rounded-full bg-[#F59E0B]/10 text-[#F59E0B] text-sm font-semibold mb-4">
-                    A verseny lebonyolítása
+                <span class="reveal inline-block px-4 py-2 rounded-full bg-[#F59E0B]/10 text-[#F59E0B] text-sm font-semibold mb-6">
+                    Egy hetes kísérlet
                 </span>
                 <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl font-bold text-[#111827] mb-4">
-                    Két izgalmas forduló
+                    AI-Napló
                 </h2>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-8">
-                <!-- Round 1 -->
-                <div class="reveal reveal-delay-2 bg-white rounded-3xl p-8 border-2 border-[#2563EB] relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-[#2563EB]/5 rounded-bl-full"></div>
-                    <div class="relative">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-14 h-14 rounded-2xl bg-[#2563EB] flex items-center justify-center text-white text-2xl font-bold">
-                                1
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-[#111827]">Előzetes feladat</h3>
-                                <p class="text-[#64748B]">Projekt készítése</p>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <h4 class="font-semibold text-lg text-[#111827] mb-3">Projekt címe:</h4>
-                            <p class="text-xl text-[#2563EB] font-semibold mb-4">Mi és a MI a mindennapjainkban</p>
-                        </div>
-
-                        <div class="space-y-3 mb-6">
-                            <div class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-[#F59E0B] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                                </svg>
-                                <p class="text-[#64748B]">Ne csak azt mutasd be, mi az AI – mutasd meg, mit jelent számodra személyesen!</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-[#F59E0B] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                                </svg>
-                                <p class="text-[#64748B]">Vezess „AI-naplót" egy héten át: jegyezd fel, mikor találkoztál MI-vel</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-[#F59E0B] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                                </svg>
-                                <p class="text-[#64748B]">Kérdezz meg szülőket, nagyszülőket is: ők hogyan élik meg ezt a változást?</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-[#F59E0B] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                                </svg>
-                                <p class="text-[#64748B]">Merj kérdéseket feltenni: ki a felelős, ha az AI hibázik?</p>
-                            </div>
-                        </div>
-
-                        <div class="bg-[#2563EB]/5 rounded-xl p-4 mb-4">
-                            <h4 class="font-semibold text-[#111827] mb-2">Formátum (szabadon választható):</h4>
-                            <p class="text-[#64748B] text-sm">prezentáció, videó, blog, infografika, interaktív bemutató, weblap stb.</p>
-                        </div>
-
-                        <div class="flex items-center gap-3 p-4 bg-[#F59E0B]/10 rounded-xl">
-                            <svg class="w-6 h-6 text-[#F59E0B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                            <div>
-                                <div class="font-semibold text-[#111827]">Leadási határidő</div>
-                                <div class="text-[#64748B]">2026. március 23. hétfő 14:00</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Round 2 -->
-                <div class="reveal reveal-delay-3 bg-white rounded-3xl p-8 border-2 border-[#F59E0B] relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-[#F59E0B]/5 rounded-bl-full"></div>
-                    <div class="relative">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-14 h-14 rounded-2xl bg-[#F59E0B] flex items-center justify-center text-white text-2xl font-bold">
-                                2
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-[#111827]">Szóbeli bemutató</h3>
-                                <p class="text-[#64748B]">Élő verseny</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item mb-6">
-                            <div class="timeline-dot">
-                                <div class="w-2 h-2 rounded-full bg-[#2563EB]"></div>
-                            </div>
-                            <h4 class="font-semibold text-lg text-[#111827] mb-2">Projekt bemutatása</h4>
-                            <p class="text-[#64748B]">A projekteket benyújtó csapatok bemutatják a projektjüket maximum 10 perc időkeretben.</p>
-                        </div>
-
-                        <div class="timeline-item mb-6">
-                            <div class="timeline-dot">
-                                <div class="w-2 h-2 rounded-full bg-[#F59E0B]"></div>
-                            </div>
-                            <h4 class="font-semibold text-lg text-[#111827] mb-2">Játékos vetélkedő</h4>
-                            <p class="text-[#64748B]">Egy játékos feladatokból álló versenyen összemérhetik a tudásukat és tájékozottságukat.</p>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-dot">
-                                <div class="w-2 h-2 rounded-full bg-[#2563EB]"></div>
-                            </div>
-                            <h4 class="font-semibold text-lg text-[#111827] mb-2">Értékelés</h4>
-                            <p class="text-[#64748B]">A két fordulóban kapott pontszámok összege fogja a csapatok sorrendjét meghatározni!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Prizes Section -->
-    <section class="py-24 bg-gradient-to-b from-white to-[#F8FAFC] relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="reveal inline-block px-4 py-1.5 rounded-full bg-[#F59E0B]/10 text-[#F59E0B] text-sm font-semibold mb-4">
-                    Díjazás
-                </span>
-                <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl font-bold text-[#111827] mb-4">
-                    Mit lehet nyerni?
-                </h2>
-            </div>
-
-            <div class="reveal reveal-delay-2 max-w-3xl mx-auto">
-                <div class="bg-white rounded-3xl p-8 md:p-12 border border-[#E2E8F0] text-center relative overflow-hidden">
-                    <div class="absolute -top-20 -right-20 w-64 h-64 bg-gradient-to-br from-[#F59E0B]/20 to-transparent rounded-full blur-3xl"></div>
-                    <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-gradient-to-tr from-[#2563EB]/20 to-transparent rounded-full blur-3xl"></div>
-                    
-                    <div class="relative">
-                        <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[#F59E0B] to-[#D97706] flex items-center justify-center">
-                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
-                            </svg>
-                        </div>
-                        
-                        <h3 class="text-2xl font-bold text-[#111827] mb-4">Minden résztvevő jutalomhoz jut!</h3>
-                        
-                        <div class="space-y-4 text-left max-w-md mx-auto">
-                            <div class="flex items-center gap-4 p-4 bg-[#2563EB]/5 rounded-xl">
-                                <div class="w-10 h-10 rounded-lg bg-[#2563EB] flex items-center justify-center text-white font-bold">1</div>
-                                <p class="text-[#64748B]">Minden résztvevő csapat <strong class="text-[#111827]">Emléklapot</strong> kap a versenyen való részvételről</p>
-                            </div>
-                            <div class="flex items-center gap-4 p-4 bg-[#F59E0B]/5 rounded-xl">
-                                <div class="w-10 h-10 rounded-lg bg-[#F59E0B] flex items-center justify-center text-white font-bold">2</div>
-                                <p class="text-[#64748B]">A végső sorrendnek megfelelően a versenyzők <strong class="text-[#111827]">tárgyjutalomban</strong> részesülnek</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Rules Section -->
-    <section class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="reveal inline-block px-4 py-1.5 rounded-full bg-[#64748B]/10 text-[#64748B] text-sm font-semibold mb-4">
-                    Egyéb tudnivalók
-                </span>
-                <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl font-bold text-[#111827] mb-4">
-                    Fontos információk
-                </h2>
-            </div>
-
-            <div class="reveal reveal-delay-2 grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                <div class="bg-white rounded-2xl p-6 border border-[#E2E8F0] flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-[#2563EB]/10 flex items-center justify-center shrink-0">
-                        <svg class="w-5 h-5 text-[#2563EB]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                        </svg>
-                    </div>
-                    <p class="text-[#64748B]">A versennyel kapcsolatos bármilyen vita esetén a szervezők döntése végleges és kötelező érvényű lesz.</p>
-                </div>
-                
-                <div class="bg-white rounded-2xl p-6 border border-[#E2E8F0] flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-[#2563EB]/10 flex items-center justify-center shrink-0">
-                        <svg class="w-5 h-5 text-[#2563EB]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
-                        </svg>
-                    </div>
-                    <p class="text-[#64748B]">A feladatok megoldásában a felkészítő tanár nem vehet részt, szerepe kizárólag tanácsadásra, szervezésre, kapcsolattartásra korlátozódik.</p>
-                </div>
-                
-                <div class="bg-white rounded-2xl p-6 border border-[#E2E8F0] flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-[#F59E0B]/10 flex items-center justify-center shrink-0">
-                        <svg class="w-5 h-5 text-[#F59E0B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                    </div>
-                    <p class="text-[#64748B]">A szervezők fenntartják a jogot a verseny dátumának és időtartamának megváltoztatására.</p>
-                </div>
-                
-                <div class="bg-white rounded-2xl p-6 border border-[#E2E8F0] flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-[#F59E0B]/10 flex items-center justify-center shrink-0">
-                        <svg class="w-5 h-5 text-[#F59E0B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                        </svg>
-                    </div>
-                    <p class="text-[#64748B]">A versenyen való részvétellel a versenyzők kifejezik egyetértésüket a versenykiírás feltételeivel.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Registration Section -->
-    <section id="jelentkezes" class="py-24 bg-gradient-to-b from-[#F8FAFC] to-white relative overflow-hidden">
-        <div class="absolute inset-0 grid-pattern opacity-50"></div>
-        <div class="orb orb-1" style="top: 20%; right: -5%;"></div>
-        <div class="orb orb-2" style="bottom: 10%; left: -5%;"></div>
-        
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl mx-auto text-center">
-                <span class="reveal inline-block px-4 py-1.5 rounded-full bg-[#2563EB]/10 text-[#2563EB] text-sm font-semibold mb-4">
-                    Jelentkezés
-                </span>
-                <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl font-bold text-[#111827] mb-4">
-                    Várjuk a nevezéseket!
-                </h2>
-                <p class="reveal reveal-delay-2 text-xl text-[#64748B] mb-8">
-                    A jelentkezés az alábbi űrlap kitöltésével lehetséges
+                <p class="reveal reveal-delay-2 text-xl text-[#64748B]">
+                    Egy hétig tudatosan figyeltem, mikor találkozom az MI-vel. Íme a felfedezéseim:
                 </p>
+            </div>
 
-                <div class="reveal reveal-delay-3 bg-white rounded-3xl p-8 md:p-12 border border-[#E2E8F0] shadow-xl">
-                    <div class="mb-8">
-                        <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#2563EB] flex items-center justify-center">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                            </svg>
-                        </div>
-                        <p class="text-[#64748B]">Töltsd ki a jelentkezési űrlapot a alábbi linken:</p>
-                    </div>
-                    
-                    <a href="https://forms.gle/422gL3YSgGf4QQwR9" target="_blank" rel="noopener noreferrer" 
-                       class="btn-primary inline-flex items-center gap-3 px-8 py-4 rounded-xl font-semibold text-lg">
-                        Jelentkezési űrlap megnyitása
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                        </svg>
-                    </a>
-                    
-                    <p class="mt-6 text-sm text-[#64748B]">
-                        Határidő: 2026. március 23. hétfő 14:00
+            <div class="space-y-8" id="diaryEntries">
+                <!-- Diary entries rendered by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Generations Section -->
+    <section id="generaciok" class="py-24 bg-gradient-to-b from-white to-[#F8FAFC] relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="reveal inline-block px-4 py-2 rounded-full bg-[#2563EB]/10 text-[#2563EB] text-sm font-semibold mb-6">
+                    Generációs párbeszéd
+                </span>
+                <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl font-bold text-[#111827] mb-4">
+                    Ők hogyan látják?
+                </h2>
+                <p class="reveal reveal-delay-2 text-xl text-[#64748B] max-w-2xl mx-auto">
+                    Megkérdeztem a szüleimet és nagyszüleimet: mit jelent számukra ez a változás?
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6" id="generationCards">
+                <!-- Generation cards rendered by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Questions Section -->
+    <section id="kerdesek" class="py-24 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="reveal inline-block px-4 py-2 rounded-full bg-[#F59E0B]/10 text-[#F59E0B] text-sm font-semibold mb-6">
+                    Gondolatébresztő
+                </span>
+                <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl font-bold text-[#111827] mb-4">
+                    Kérdések, amikre nincs egyetlen válasz
+                </h2>
+                <p class="reveal reveal-delay-2 text-xl text-[#64748B] max-w-2xl mx-auto">
+                    Az MI korában a jó kérdés feltevése talán fontosabb, mint a válaszok megtalálása
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6" id="questionCards">
+                <!-- Question cards rendered by JS -->
+            </div>
+
+            <div class="reveal mt-16 text-center">
+                <div class="inline-block bg-gradient-to-r from-[#2563EB]/10 to-[#F59E0B]/10 rounded-2xl p-8 border border-[#E2E8F0]">
+                    <p class="text-lg text-[#64748B] italic mb-4">
+                        "A tudás hatalom, de a kérdés a kulcs, ami megnyitja az ajtót."
+                    </p>
+                    <p class="text-[#111827] font-semibold">
+                        Te milyen kérdést tennél fel az MI-vel kapcsolatban?
                     </p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Closing Section -->
+    <section class="py-24 bg-gradient-to-b from-[#F8FAFC] to-white relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-[#2563EB]/5 to-[#F59E0B]/5 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <div class="reveal">
+                <div class="w-20 h-20 mx-auto mb-8 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#F59E0B] flex items-center justify-center">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl font-bold text-[#111827] mb-6">
+                Köszönöm, hogy velem tartottál!
+            </h2>
+            <p class="reveal reveal-delay-2 text-xl text-[#64748B] mb-8 max-w-2xl mx-auto">
+                Ez az út megváltoztatta, ahogy az MI-re tekintek. Nem egy távoli technológia, hanem mindennapi társunk — érdemes megismerni jobban.
+            </p>
+            
+            <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#hero" class="btn-primary px-8 py-4 rounded-xl font-semibold text-lg inline-flex items-center justify-center gap-2">
+                    Vissza az elejére
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+                    </svg>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-[#111827] text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-3 gap-8 mb-12">
-                <div>
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-[#2563EB] to-[#F59E0B] flex items-center justify-center">
-                            <span class="text-white font-bold text-lg">3D</span>
-                        </div>
-                        <span class="font-semibold">Digitális Diák Derbi</span>
+    <footer class="bg-[#111827] text-white py-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#2563EB] to-[#F59E0B] flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
                     </div>
+                    <div>
+                        <div class="font-semibold">Mi és a MI</div>
+                        <div class="text-sm text-[#94A3B8]">Digitális Témahét 2026</div>
+                    </div>
+                </div>
+                
+                <div class="text-center md:text-right">
                     <p class="text-[#94A3B8] text-sm">
-                        A MSzC Gépészeti Technikum és Kollégium versenye a 11. Digitális Témahét alkalmából.
+                        Készült a 3D Digitális Diák Derbi versenyére
+                    </p>
+                    <p class="text-[#64748B] text-xs mt-1">
+                        MSzC Gépészeti Technikum és Kollégium
                     </p>
                 </div>
-                
-                <div>
-                    <h4 class="font-semibold mb-4">Kapcsolat</h4>
-                    <div class="space-y-2 text-sm text-[#94A3B8]">
-                        <p>Jakabné Márton Klára</p>
-                        <a href="mailto:jakabneklara@gmail.com" class="hover:text-[#2563EB] transition-colors">jakabneklara@gmail.com</a>
-                        <p>+36 20 524 4977</p>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="font-semibold mb-4">Helyszín</h4>
-                    <div class="text-sm text-[#94A3B8]">
-                        <p>MSzC Gépészeti Technikum és Kollégium</p>
-                        <p>4700 Mátészalka, Kölcsey u. 12.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="border-t border-[#374151] pt-8 text-center text-sm text-[#94A3B8]">
-                <p>Mátészalka, 2026. március 5. — A szervezők</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // AI Usage Cards Data
-        const aiUsageData = [
+        // Data definitions
+        const usageData = [
             {
                 title: "Információ gyűjtés",
-                description: "Az MI segít a releváns adatok gyors és hatékony összegyűjtésében különböző forrásokból.",
+                description: "Az MI segít a releváns adatok gyors összegyűjtésében, a Google kereséstől a kutatási asszisztensekig.",
                 icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                 </svg>`,
                 color: "#2563EB"
             },
             {
-                title: "Komplex problémamegoldás",
-                description: "Összetett feladatok lebontása és megoldási javaslatok kidolgozása.",
+                title: "Komplex probléma megoldás",
+                description: "Összetett feladatok lebontása és megoldási javaslatok kidolgozása — a saktól az üzleti stratégiákig.",
                 icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                 </svg>`,
@@ -847,7 +787,7 @@
             },
             {
                 title: "Ötletelés",
-                description: "Kreatív ötletek generálása és agyvihar támogatás bármilyen témában.",
+                description: "Kreatív ötletek generálása és agyviharzás — sosem fogy el a javaslatokból.",
                 icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                 </svg>`,
@@ -855,15 +795,15 @@
             },
             {
                 title: "Terv továbbfejlesztése",
-                description: "Meglévő tervek elemzése és fejlesztési javaslatok megfogalmazása.",
+                description: "Meglévő tervek elemzése és fejlesztési javaslatok — új perspektívák a régi problémákra.",
                 icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
                 </svg>`,
                 color: "#F59E0B"
             },
             {
-                title: "Egészséges életmód követése",
-                description: "Egészségügyi tanácsok, étrend- és sporttervek készítése.",
+                title: "Egészséges életmód",
+                description: "Fitnesz applikációk, alváskövetők, személyre szabott étrend-tervek — az MI a Tested partnere.",
                 icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
                 </svg>`,
@@ -871,7 +811,7 @@
             },
             {
                 title: "Hibák keresése",
-                description: "Kódok, szövegek és egyéb anyagok hibáinak feltárása és javítása.",
+                description: "Kódellenőrzés, proofreading, anomáliák detektálása — az MI szeme nem fárad el.",
                 icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
                 </svg>`,
@@ -879,7 +819,7 @@
             },
             {
                 title: "Munka értékelése",
-                description: "Kész munkák felülvizsgálata, visszajelzések és javaslatok megfogalmazása.",
+                description: "Konstruktív visszajelzések, teljesítmény-elemzés, javaslatok a fejlődésre.",
                 icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>`,
@@ -887,7 +827,7 @@
             },
             {
                 title: "Nehéz témák magyarázata",
-                description: "Bonyolult fogalmak egyszerű, érthető formában történő bemutatása.",
+                description: "Bonyolult fogalmak egyszerű, érthető formában — mintha egy türelmes tanár magyarázna.",
                 icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                 </svg>`,
@@ -895,7 +835,7 @@
             },
             {
                 title: "Szöveg alkotás",
-                description: "Különböző stílusú és típusú szövegek létrehozása és szerkesztése.",
+                description: "E-mailek, esszék, kreatív írás — az MI segít megfogalmazni a gondolataidat tisztábban.",
                 icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                 </svg>`,
@@ -903,28 +843,216 @@
             }
         ];
 
-        // Render AI Cards
-        function renderAICards() {
-            const container = document.getElementById('ai-cards');
+        const diaryData = [
+            {
+                day: "H",
+                dayName: "Hétfő",
+                title: "A rejtélyes ajánlások",
+                content: "Reggel a YouTube-on videókat néztem, és észrevettem, hogy az ajánlások tökéletesen illeszkednek az érdeklődésemhez. Később rájöttem: az MI figyeli, mit nézek meg, meddig nézem, és ezer más jelet is elemez. Egy kicsit furcsa érzés volt.",
+                encounter: "YouTube algoritmus, TikTok feed"
+            },
+            {
+                day: "K",
+                dayName: "Kedd",
+                title: "A navigációs segéd",
+                content: "Iskolába menet a Google Maps más utat javasolt a megszokottnál. Kiderült, baleset volt az úton. Az MI valós időben elemezte a forgalmi adatokat és kiszámolta a leggyorsabb alternatívát. Megspórolt nekem 20 percet!",
+                encounter: "Google Maps, Waze"
+            },
+            {
+                day: "Sz",
+                dayName: "Szerda",
+                title: "A nyelvi csoda",
+                content: "Angol házi feladathoz használtam a DeepL fordítót. Nem csak lefordította a mondatokat, hanem a kontextust is értette! Aztán a Duolingo gyakorlatai is adaptálódtak a hibáimhoz — az MI pontosan tudja, mit kell még tanulnom.",
+                encounter: "DeepL, Duolingo, Grammarly"
+            },
+            {
+                day: "Cs",
+                dayName: "Csütörtök",
+                title: "A tanulópartner",
+                content: "Matek feladatnál elakadtam. A ChatGPT nem csak megadta a választ, hanem elmagyarázta a megoldás lépéseit. Mintha egy személyes korrepetitorom lenne, aki sosem fárad el és sosem ítél el a hibáimért.",
+                encounter: "ChatGPT, Photomath"
+            },
+            {
+                day: "P",
+                dayName: "Péntek",
+                title: "A szórakoztató algoritmus",
+                content: "Spotify Discover Weekly playlistje új zenéket talált nekem. Olyan előadókat, akiket nem is ismertem, de azonnal megszerettem. Az MI a zenei ízlésemből rajzolt képet — és meglepően pontos volt.",
+                encounter: "Spotify, Netflix ajánlások"
+            },
+            {
+                day: "Szo",
+                dayName: "Szombat",
+                title: "A digitális fotós",
+                content: "Családi fotókat szerkesztettem a telefonon. A \"képjavítás\" gomb egyetlen kattintással eltávolította a háttérben lévő turistákat, javította a megvilágítást, és még az arcomat is finoman retusálta. Mindez másodpercek alatt.",
+                encounter: "Google Photos, FaceApp, avatars"
+            },
+            {
+                day: "V",
+                dayName: "Vasárnap",
+                title: "A hét összegzése",
+                content: "Visszatekintve: szinte minden órában találkoztam MI-vel. Legtöbbször észre sem vettem. Ez a legmeglepőbb — mennyire természetessé vált az életem része. De vajon mennyit tud rólam?",
+                encounter: "Az egész heti tapasztalat"
+            }
+        ];
+
+        const generationData = [
+            {
+                generation: "Nagymama",
+                age: "72 éves",
+                emoji: "U",
+                quote: "Amikor mi voltunk fiatalok, könyvtárba jártunk tudományt szerezni. Most a unokám egy dobozba beszél, és mindent megtud. Furcsa ez a világ, de izgalmas is. Én már nem tanulom meg, de tisztelem, hogy ti milyen könnyen boldogultok vele.",
+                feeling: "Csodálkozás és elfogadás",
+                color: "#F59E0B"
+            },
+            {
+                generation: "Anya",
+                age: "48 éves",
+                emoji: "A",
+                quote: "A munkahelyemen már használjuk a ChatGPT-t a levelezéshez. Eleinte féltem, hogy elveszíti a munkámat, de most már látom, hogy segít. A lényeg, hogy ne bízzunk mindent rá — az emberi ítélőképesség pótolhatatlan.",
+                feeling: "Bizakodás óvatossággal",
+                color: "#2563EB"
+            },
+            {
+                generation: "Én",
+                age: "17 éves",
+                emoji: "É",
+                quote: "Nekem ez a normális. Nem tudom elképzelni az életet MI nélkül. De a naplóvezetés óta máshogy látom: nem csak egy eszköz, hanem egy tükör, ami visszaadja a digitális lábnyomainkat. Ez felelősséggel jár.",
+                feeling: "Tudatosság és kíváncsiság",
+                color: "#64748B"
+            }
+        ];
+
+        const questionData = [
+            {
+                question: "Ki a felelős, ha az MI hibázik?",
+                description: "Ha egy önmegó autó balesetet okoz, a programozó, a gyártó vagy a tulajdonos felel? Mi történik, ha egy orvosi MI rossz diagnózist ad?",
+                icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>`
+            },
+            {
+                question: "Mennyi személyes adatunkat bízhatjuk az MI-re?",
+                description: "Az ajánlások, az asszisztensek mind adatokat gyűjtenek. Hol húzódik a határ a kényelem és a magánszféra között?",
+                icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>`
+            },
+            {
+                question: "Az MI kreatív műveket alkothat?",
+                description: "Ha egy AI festményt vagy dalt készít, az művészet? Ki a szerző? És mi lesz az emberi művészekkel?",
+                icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                </svg>`
+            },
+            {
+                question: "Hogyan változik meg az oktatás?",
+                description: "Ha az MI minden választ meg tud adni, mit érdemes tanítani? A memorizálás helyett a kritikus gondolkodás lesz a legfontosabb készség?",
+                icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>`
+            },
+            {
+                question: "Lehet az MI-nek tudata?",
+                description: "Ha egy MI úgy válaszol, mintha érezne, az valós érzelem vagy csak szimuláció? Honnan tudjuk az eltérést?",
+                icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                </svg>`
+            },
+            {
+                question: "Milyen munkahelyek maradnak meg?",
+                description: "Az MI átveszi a rutinfeladatokat. Mely szakmák tűnnek el, és milyen új területek nyílnak meg? Hogyan készüljünk fel?",
+                icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>`
+            }
+        ];
+
+        // Render functions
+        function renderUsageCards() {
+            const container = document.getElementById('usageCards');
             if (!container) return;
             
-            container.innerHTML = aiUsageData.map((item, index) => `
-                <div class="ai-card reveal reveal-delay-${Math.min(index % 3 + 1, 3)} rounded-2xl p-6 cursor-default" tabindex="0">
-                    <div class="icon-wrapper w-12 h-12 rounded-xl mb-4 flex items-center justify-center" style="background: ${item.color}15;">
+            container.innerHTML = usageData.map((item, index) => `
+                <div class="usage-card reveal reveal-delay-${Math.min((index % 3) + 1, 3)} rounded-2xl p-6 cursor-default" tabindex="0">
+                    <div class="icon-box w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background: ${item.color}15;">
                         <div style="color: ${item.color};">${item.icon}</div>
                     </div>
-                    <h3 class="text-lg font-semibold text-[#111827] mb-2">${item.title}</h3>
-                    <p class="text-[#64748B] text-sm leading-relaxed">${item.description}</p>
+                    <h3 class="text-xl font-bold text-[#111827] mb-3">${item.title}</h3>
+                    <p class="text-[#64748B] leading-relaxed">${item.description}</p>
                 </div>
             `).join('');
         }
 
-        // Initialize on load
-        renderAICards();
+        function renderDiaryEntries() {
+            const container = document.getElementById('diaryEntries');
+            if (!container) return;
+            
+            container.innerHTML = diaryData.map((entry, index) => `
+                <div class="diary-entry reveal reveal-delay-${Math.min((index % 4) + 1, 4)}">
+                    <div class="diary-marker">${entry.day}</div>
+                    <div class="diary-content">
+                        <div class="flex flex-wrap items-center gap-3 mb-3">
+                            <span class="text-2xl font-bold text-[#111827]">${entry.dayName}</span>
+                            <span class="px-3 py-1 rounded-full bg-[#2563EB]/10 text-[#2563EB] text-sm font-medium">${entry.title}</span>
+                        </div>
+                        <p class="text-[#64748B] mb-4">${entry.content}</p>
+                        <div class="flex items-center gap-2 text-sm">
+                            <svg class="w-4 h-4 text-[#F59E0B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                            <span class="text-[#64748B]">MI találkozások:</span>
+                            <span class="text-[#111827] font-medium">${entry.encounter}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
 
-        // Scroll reveal with IntersectionObserver
-        const revealElements = document.querySelectorAll('.reveal');
-        
+        function renderGenerationCards() {
+            const container = document.getElementById('generationCards');
+            if (!container) return;
+            
+            container.innerHTML = generationData.map((gen, index) => `
+                <div class="gen-card reveal reveal-delay-${index + 1}">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center text-white text-xl font-bold" style="background: ${gen.color};">
+                            ${gen.emoji}
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-[#111827]">${gen.generation}</h3>
+                            <p class="text-[#64748B] text-sm">${gen.age}</p>
+                        </div>
+                    </div>
+                    <p class="text-[#64748B] leading-relaxed mb-4">${gen.quote}</p>
+                    <div class="pt-4 border-t border-[#E2E8F0]">
+                        <span class="text-sm text-[#64748B]">Érzés: </span>
+                        <span class="text-sm font-semibold" style="color: ${gen.color};">${gen.feeling}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderQuestionCards() {
+            const container = document.getElementById('questionCards');
+            if (!container) return;
+            
+            container.innerHTML = questionData.map((q, index) => `
+                <div class="question-card reveal reveal-delay-${Math.min((index % 2) + 1, 2)}" tabindex="0">
+                    <div class="question-icon">${q.icon}</div>
+                    <h3 class="text-xl font-bold text-[#111827] mb-3">${q.question}</h3>
+                    <p class="text-[#64748B]">${q.description}</p>
+                </div>
+            `).join('');
+        }
+
+        // Initialize renders
+        renderUsageCards();
+        renderDiaryEntries();
+        renderGenerationCards();
+        renderQuestionCards();
+
+        // Scroll reveal observer
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -936,34 +1064,30 @@
             rootMargin: '0px 0px -50px 0px'
         });
 
-        revealElements.forEach(el => revealObserver.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        let lastScroll = 0;
-
+        // Scroll progress bar
+        const scrollProgress = document.getElementById('scrollProgress');
+        
         window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.max(0, Math.min(1, scrollTop / docHeight));
             
-            if (currentScroll > 50) {
-                navbar.classList.add('nav-scrolled');
-            } else {
-                navbar.classList.remove('nav-scrolled');
+            if (scrollProgress) {
+                scrollProgress.style.transform = `scaleX(${scrollPercent})`;
             }
-            
-            lastScroll = currentScroll;
         });
 
         // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
 
         if (mobileMenuBtn && mobileMenu) {
             mobileMenuBtn.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
 
-            // Close mobile menu when clicking a link
             mobileMenu.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
                     mobileMenu.classList.add('hidden');
@@ -973,67 +1097,33 @@
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const navHeight = 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // Counter animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                if (!target) return;
-                
-                const duration = 2000;
-                const steps = 60;
-                const increment = target / steps;
-                let current = 0;
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        counter.textContent = target;
-                        clearInterval(timer);
-                    } else {
-                        counter.textContent = Math.floor(current);
-                    }
-                }, duration / steps);
-            });
-        }
-
-        // Trigger counter animation when visible
-        const statsSection = document.querySelector('.counter');
-        if (statsSection) {
-            const counterObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateCounters();
-                        counterObserver.disconnect();
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            counterObserver.observe(statsSection);
-        }
-
-        // Parallax effect for orbs (desktop only)
+        // Parallax effect for background shapes (desktop only)
         if (window.matchMedia('(min-width: 768px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             document.addEventListener('mousemove', (e) => {
-                const orbs = document.querySelectorAll('.orb');
-                const x = (e.clientX / window.innerWidth - 0.5) * 30;
-                const y = (e.clientY / window.innerHeight - 0.5) * 30;
+                const shapes = document.querySelectorAll('.bg-shape');
+                const x = (e.clientX / window.innerWidth - 0.5) * 20;
+                const y = (e.clientY / window.innerHeight - 0.5) * 20;
                 
-                orbs.forEach((orb, index) => {
-                    const factor = (index + 1) * 0.5;
-                    orb.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+                shapes.forEach((shape, index) => {
+                    const factor = (index + 1) * 0.3;
+                    shape.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
                 });
             });
         }
