@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi és a MI a mindennapjainkban</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            background-color: #FFFFFF;
+            color: #111827;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Navigáció */
+        nav {
+            background-color: #FFFFFF;
+            border-bottom: 1px solid #E2E8F0;
+            padding: 15px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        nav .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: #111827;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 35px;
+            height: 35px;
+            background-color: #2563EB;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #64748B;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            color: #2563EB;
+        }
+
+        /* Hero szekció */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px 50px;
+            background-color: #F8FAFC;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #111827;
+        }
+
+        .hero h1 span {
+            color: #2563EB;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #64748B;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #2563EB;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background-color: #2563EB;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: #2563EB;
+            border: 2px solid #2563EB;
+        }
+
+        .btn-secondary:hover {
+            background-color: #2563EB;
+            color: white;
+        }
+
+        /* Szekciók */
+        section {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+            color: #111827;
+        }
+
+        .section-intro {
+            color: #64748B;
+            margin-bottom: 40px;
+        }
+
+        /* Személyes szekció */
+        .personal-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .personal-section .text p {
+            margin-bottom: 15px;
+            color: #64748B;
+        }
+
+        .personal-section .text strong {
+            color: #111827;
+        }
+
+        .info-card {
+            background-color: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .info-card h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card .icon {
+            width: 35px;
+            height: 35px;
+            background-color: #2563EB;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-card .icon svg {
+            width: 18px;
+            height: 18px;
+            fill: white;
+        }
+
+        .info-item {
+            background-color: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-item-title {
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 5px;
+        }
+
+        .info-item-desc {
+            font-size: 14px;
+            color: #64748B;
+        }
+
+        /* Használati módok */
+        .usage-section {
+            background-color: #F8FAFC;
+        }
+
+        .usage-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .usage-card {
+            background-color: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .usage-card:hover {
+            border-color: #2563EB;
+        }
+
+        .usage-card .icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .usage-card .icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .usage-card h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #111827;
+        }
+
+        .usage-card p {
+            font-size: 14px;
+            color: #64748B;
+        }
+
+        /* Napló szekció */
+        .diary-entry {
+            background-color: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .diary-entry:hover {
+            border-color: #2563EB;
+        }
+
+        .diary-entry .day {
+            width: 50px;
+            height: 50px;
+            background-color: #2563EB;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .diary-entry .content h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #111827;
+        }
+
+        .diary-entry .tag {
+            display: inline-block;
+            background-color: #F59E0B;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .diary-entry .content p {
+            color: #64748B;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .ai-encounter {
+            font-size: 13px;
+            color: #64748B;
+        }
+
+        .ai-encounter strong {
+            color: #111827;
+        }
+
+        /* Generációk */
+        .generations-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gen-card {
+            background-color: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .gen-card:hover {
+            border-color: #2563EB;
+        }
+
+        .gen-card .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .gen-card .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .gen-card .header h3 {
+            font-size: 18px;
+            color: #111827;
+        }
+
+        .gen-card .header .age {
+            font-size: 14px;
+            color: #64748B;
+        }
+
+        .gen-card .quote {
+            color: #64748B;
+            font-style: italic;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 3px solid #E2E8F0;
+        }
+
+        .gen-card .feeling {
+            font-size: 14px;
+            padding-top: 15px;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .gen-card .feeling span {
+            font-weight: 600;
+        }
+
+        /* Kérdések */
+        .questions-section {
+            background-color: #F8FAFC;
+        }
+
+        .questions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .question-card {
+            background-color: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .question-card:hover {
+            border-color: #F59E0B;
+        }
+
+        .question-card .icon {
+            width: 40px;
+            height: 40px;
+            background-color: #F59E0B;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .question-card .icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: white;
+        }
+
+        .question-card h3 {
+            font-size: 16px;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .question-card p {
+            font-size: 14px;
+            color: #64748B;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111827;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        footer .footer-logo .icon {
+            width: 35px;
+            height: 35px;
+            background-color: #2563EB;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        footer .footer-logo .icon svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        footer .footer-text {
+            text-align: right;
+        }
+
+        footer .footer-text p {
+            margin-bottom: 5px;
+        }
+
+        footer .footer-text .small {
+            font-size: 12px;
+            color: #64748B;
+        }
+
+        /* Reszponzivitás */
+        @media (max-width: 900px) {
+            .personal-section {
+                grid-template-columns: 1fr;
+            }
+
+            .usage-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .generations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .questions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .usage-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .diary-entry {
+                flex-direction: column;
+            }
+
+            .diary-entry .day {
+                margin-bottom: 10px;
+            }
+
+            footer .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            footer .footer-text {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigáció -->
+    <nav>
+        <div class="container">
+            <a href="#hero" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
+                </div>
+                Mi és a MI
+            </a>
+            <ul>
+                <li><a href="#szemelyes">Személyes</a></li>
+                <li><a href="#hasznalat">Használat</a></li>
+                <li><a href="#naplo">AI-Napló</a></li>
+                <li><a href="#generaciok">Generációk</a></li>
+                <li><a href="#kerdesek">Kérdések</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero szekció -->
+    <section class="hero" id="hero">
+        <div>
+            <span class="badge">Digitális Témahét 2026</span>
+            <h1>Mi és a <span>MI</span><br>a mindennapjainkban</h1>
+            <p>Egy személyes utazás a mesterséges intelligencia világába — nem úgy, ahogy a tankönyvek írják, hanem ahogy mi éljük meg minden nap.</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="#szemelyes" class="btn btn-primary">Fedezd fel a történetet</a>
+                <a href="#naplo" class="btn btn-secondary">AI-Napló olvasása</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Személyes szekció -->
+    <section id="szemelyes">
+        <div class="personal-section">
+            <div class="text">
+                <h2>Mit jelent számomra az MI?</h2>
+                <p>Amikor először találkoztam a ChatGPT-vel, úgy éreztem, mintha egy tudományos-fantasztikus filmben landoltam volna. Egy géppel beszélgetni, ami ténylegesen érti amit mondok? Ez a jövő volt.</p>
+                <p>De azóta rájöttem, hogy az MI nem csak egy robot, ami válaszokat ad. Ez egy <strong>tükröt tart elém</strong> — mutatja, hogyan gondolkodom, mit keresek, milyen az ízlésem. Amikor a Spotify lejátszási listámat állítja össze, amikor a Google Maps kikerüli a dugót, amikor a telefonom arcfelismerése kinyitja a készüléket.</p>
+                <p>Az MI <strong>csendes segítőtárs</strong> lett az életemben. De vajon mennyire vagyok tudatában ennek? És mit szólnak ehhez a szüleim, nagyszüleim?</p>
+            </div>
+            <div class="info-card">
+                <h3>
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    Gyors felismerések
+                </h3>
+                <div class="info-item">
+                    <div class="info-item-title">Mindenhol ott van</div>
+                    <div class="info-item-desc">A social media algoritmusoktól a navigációig</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-item-title">Nem varázslat</div>
+                    <div class="info-item-desc">Eszköz, amivel együtt kell tanulnunk élni</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-item-title">Kérdések maradnak</div>
+                    <div class="info-item-desc">Felelősség, etika, jövő — ezekről beszélni kell</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Használati módok -->
+    <section id="hasznalat" class="usage-section">
+        <h2 style="text-align: center;">Hogyan használjuk az MI-t?</h2>
+        <p class="section-intro" style="text-align: center;">Az MI nem csak a jövő zenéje — itt van a jelenben, és sokféleképpen segít minket</p>
+        
+        <div class="usage-grid">
+            <div class="usage-card">
+                <div class="icon" style="background-color: rgba(37, 99, 235, 0.1);">
+                    <svg fill="#2563EB" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <h3>Információ gyűjtés</h3>
+                <p>Az MI segít a releváns adatok gyors összegyűjtésében, a Google kereséstől a kutatási asszisztensekig.</p>
+            </div>
+
+            <div class="usage-card">
+                <div class="icon" style="background-color: rgba(245, 158, 11, 0.1);">
+                    <svg fill="#F59E0B" viewBox="0 0 24 24"><path d="M9 21c0 .5.4 1 1 1h4c.6 0 1-.5 1-1v-1H9v1zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .5.4 1 1 1h6c.6 0 1-.5 1-1v-2.3c1.8-1.3 3-3.4 3-5.7 0-3.9-3.1-7-7-7z"/></svg>
+                </div>
+                <h3>Komplex probléma megoldás</h3>
+                <p>Összetett feladatok lebontása és megoldási javaslatok kidolgozása — a saktól az üzleti stratégiákig.</p>
+            </div>
+
+            <div class="usage-card">
+                <div class="icon" style="background-color: rgba(37, 99, 235, 0.1);">
+                    <svg fill="#2563EB" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <h3>Ötletelés</h3>
+                <p>Kreatív ötletek generálása és agyviharzás — sosem fogy el a javaslatokból.</p>
+            </div>
+
+            <div class="usage-card">
+                <div class="icon" style="background-color: rgba(245, 158, 11, 0.1);">
+                    <svg fill="#F59E0B" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+                </div>
+                <h3>Terv továbbfejlesztése</h3>
+                <p>Meglévő tervek elemzése és fejlesztési javaslatok — új perspektívák a régi problémákra.</p>
+            </div>
+
+            <div class="usage-card">
+                <div class="icon" style="background-color: rgba(37, 99, 235, 0.1);">
+                    <svg fill="#2563EB" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </div>
+                <h3>Egészséges életmód</h3>
+                <p>Fitnesz applikációk, alváskövetők, személyre szabott étrend-tervek — az MI a Tested partnere.</p>
+            </div>
+
+            <div class="usage-card">
+                <div class="icon" style="background-color: rgba(245, 158, 11, 0.1);">
+                    <svg fill="#F59E0B" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                </div>
+                <h3>Hibák keresése</h3>
+                <p>Kódellenőrzés, proofreading, anomáliák detektálása — az MI szeme nem fárad el.</p>
+            </div>
+
+            <div class="usage-card">
+                <div class="icon" style="background-color: rgba(37, 99, 235, 0.1);">
+                    <svg fill="#2563EB" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                </div>
+                <h3>Munka értékelése</h3>
+                <p>Konstruktív visszajelzések, teljesítmény-elemzés, javaslatok a fejlődésre.</p>
+            </div>
+
+            <div class="usage-card">
+                <div class="icon" style="background-color: rgba(245, 158, 11, 0.1);">
+                    <svg fill="#F59E0B" viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+                </div>
+                <h3>Nehéz témák magyarázata</h3>
+                <p>Bonyolult fogalmak egyszerű, érthető formában — mintha egy türelmes tanár magyarázna.</p>
+            </div>
+
+            <div class="usage-card">
+                <div class="icon" style="background-color: rgba(37, 99, 235, 0.1);">
+                    <svg fill="#2563EB" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                </div>
+                <h3>Szöveg alkotás</h3>
+                <p>E-mailek, esszék, kreatív írás — az MI segít megfogalmazni a gondolataidat tisztábban.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Napló -->
+    <section id="naplo" style="background-color: white;">
+        <h2 style="text-align: center;">AI-Napló</h2>
+        <p class="section-intro" style="text-align: center;">Egy hétig tudatosan figyeltem, mikor találkozom az MI-vel. Íme a felfedezéseim:</p>
+
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="diary-entry">
+                <div class="day">H</div>
+                <div class="content">
+                    <h3>Hétfő - A rejtélyes ajánlások</h3>
+                    <span class="tag">YouTube algoritmus</span>
+                    <p>Reggel a YouTube-on videókat néztem, és észrevettem, hogy az ajánlások tökéletesen illeszkednek az érdeklődésemhez. Később rájöttem: az MI figyeli, mit nézek meg, meddig nézem, és ezer más jelet is elemez. Egy kicsit furcsa érzés volt.</p>
+                    <p class="ai-encounter"><strong>MI találkozások:</strong> YouTube algoritmus, TikTok feed</p>
+                </div>
+            </div>
+
+            <div class="diary-entry">
+                <div class="day">K</div>
+                <div class="content">
+                    <h3>Kedd - A navigációs segéd</h3>
+                    <span class="tag">Google Maps</span>
+                    <p>Iskolába menet a Google Maps más utat javasolt a megszokottnál. Kiderült, baleset volt az úton. Az MI valós időben elemezte a forgalmi adatokat és kiszámolta a leggyorsabb alternatívát. Megspórolt nekem 20 percet!</p>
+                    <p class="ai-encounter"><strong>MI találkozások:</strong> Google Maps, Waze</p>
+                </div>
+            </div>
+
+            <div class="diary-entry">
+                <div class="day">Sz</div>
+                <div class="content">
+                    <h3>Szerda - A nyelvi csoda</h3>
+                    <span class="tag">DeepL fordító</span>
+                    <p>Angol házi feladathoz használtam a DeepL fordítót. Nem csak lefordította a mondatokat, hanem a kontextust is értette! Aztán a Duolingo gyakorlatai is adaptálódtak a hibáimhoz — az MI pontosan tudja, mit kell még tanulnom.</p>
+                    <p class="ai-encounter"><strong>MI találkozások:</strong> DeepL, Duolingo, Grammarly</p>
+                </div>
+            </div>
+
+            <div class="diary-entry">
+                <div class="day">Cs</div>
+                <div class="content">
+                    <h3>Csütörtök - A tanulópartner</h3>
+                    <span class="tag">ChatGPT</span>
+                    <p>Matek feladatnál elakadtam. A ChatGPT nem csak megadta a választ, hanem elmagyarázta a megoldás lépéseit. Mintha egy személyes korrepetitorom lenne, aki sosem fárad el és sosem ítél el a hibáimért.</p>
+                    <p class="ai-encounter"><strong>MI találkozások:</strong> ChatGPT, Photomath</p>
+                </div>
+            </div>
+
+            <div class="diary-entry">
+                <div class="day">P</div>
+                <div class="content">
+                    <h3>Péntek - A szórakoztató algoritmus</h3>
+                    <span class="tag">Spotify</span>
+                    <p>Spotify Discover Weekly playlistje új zenéket talált nekem. Olyan előadókat, akiket nem is ismertem, de azonnal megszerettem. Az MI a zenei ízlésemből rajzolt képet — és meglepően pontos volt.</p>
+                    <p class="ai-encounter"><strong>MI találkozások:</strong> Spotify, Netflix ajánlások</p>
+                </div>
+            </div>
+
+            <div class="diary-entry">
+                <div class="day">Szo</div>
+                <div class="content">
+                    <h3>Szombat - A digitális fotós</h3>
+                    <span class="tag">Google Photos</span>
+                    <p>Családi fotókat szerkesztettem a telefonon. A "képjavítás" gomb egyetlen kattintással eltávolította a háttérben lévő turistákat, javította a megvilágítást, és még az arcomat is finoman retusálta. Mindez másodpercek alatt.</p>
+                    <p class="ai-encounter"><strong>MI találkozások:</strong> Google Photos, FaceApp</p>
+                </div>
+            </div>
+
+            <div class="diary-entry">
+                <div class="day">V</div>
+                <div class="content">
+                    <h3>Vasárnap - A hét összegzése</h3>
+                    <span class="tag">Összefoglalás</span>
+                    <p>Visszatekintve: szinte minden órában találkoztam MI-vel. Legtöbbször észre sem vettem. Ez a legmeglepőbb — mennyire természetessé vált az életem része. De vajon mennyit tud rólam?</p>
+                    <p class="ai-encounter"><strong>MI találkozások:</strong> Az egész heti tapasztalat</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Generációk -->
+    <section id="generaciok" style="background-color: #F8FAFC;">
+        <h2 style="text-align: center;">Ők hogyan látják?</h2>
+        <p class="section-intro" style="text-align: center;">Megkérdeztem a szüleimet és nagyszüleimet: mit jelent számukra ez a változás?</p>
+
+        <div class="generations-grid">
+            <div class="gen-card">
+                <div class="header">
+                    <div class="avatar" style="background-color: #F59E0B;">N</div>
+                    <div>
+                        <h3>Nagymama</h3>
+                        <p class="age">72 éves</p>
+                    </div>
+                </div>
+                <p class="quote">"Amikor mi voltunk fiatalok, könyvtárba jártunk tudományt szerezni. Most az unokám egy dobozba beszél, és mindent megtud. Furcsa ez a világ, de izgalmas is. Én már nem tanulom meg, de tisztelem, hogy ti milyen könnyen boldogultok vele."</p>
+                <p class="feeling">Érzés: <span style="color: #F59E0B;">Csodálkozás és elfogadás</span></p>
+            </div>
+
+            <div class="gen-card">
+                <div class="header">
+                    <div class="avatar" style="background-color: #2563EB;">A</div>
+                    <div>
+                        <h3>Anya</h3>
+                        <p class="age">48 éves</p>
+                    </div>
+                </div>
+                <p class="quote">"A munkahelyemen már használjuk a ChatGPT-t a levelezéshez. Eleinte féltem, hogy elveszítem a munkámat, de most már látom, hogy segít. A lényeg, hogy ne bízzunk mindent rá — az emberi ítélőképesség pótolhatatlan."</p>
+                <p class="feeling">Érzés: <span style="color: #2563EB;">Bizakodás óvatossággal</span></p>
+            </div>
+
+            <div class="gen-card">
+                <div class="header">
+                    <div class="avatar" style="background-color: #64748B;">É</div>
+                    <div>
+                        <h3>Én</h3>
+                        <p class="age">17 éves</p>
+                    </div>
+                </div>
+                <p class="quote">"Nekem ez a normális. Nem tudom elképzelni az életet MI nélkül. De a naplóvezetés óta máshogy látom: nem csak egy eszköz, hanem egy tükör, ami visszaadja a digitális lábnyomainkat. Ez felelősséggel jár."</p>
+                <p class="feeling">Érzés: <span style="color: #64748B;">Tudatosság és kíváncsiság</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kérdések -->
+    <section id="kerdesek">
+        <h2 style="text-align: center;">Kérdések, amikre nincs egyetlen válasz</h2>
+        <p class="section-intro" style="text-align: center;">Az MI korában a jó kérdés feltevése talán fontosabb, mint a válaszok megtalálása</p>
+
+        <div class="questions-grid">
+            <div class="question-card">
+                <div class="icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                </div>
+                <h3>Ki a felelős, ha az MI hibázik?</h3>
+                <p>Ha egy önmegó autó balesetet okoz, a programozó, a gyártó vagy a tulajdonos felel? Mi történik, ha egy orvosi MI rossz diagnózist ad?</p>
+            </div>
+
+            <div class="question-card">
+                <div class="icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                </div>
+                <h3>Mennyi személyes adatunkat bízhatjuk az MI-re?</h3>
+                <p>Az ajánlások, az asszisztensek mind adatokat gyűjtenek. Hol húzódik a határ a kényelem és a magánszféra között?</p>
+            </div>
+
+            <div class="question-card">
+                <div class="icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+                </div>
+                <h3>Az MI kreatív műveket alkothat?</h3>
+                <p>Ha egy AI festményt vagy dalt készít, az művészet? Ki a szerző? És mi lesz az emberi művészekkel?</p>
+            </div>
+
+            <div class="question-card">
+                <div class="icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                </div>
+                <h3>Hogyan változik meg az oktatás?</h3>
+                <p>Ha az MI minden választ meg tud adni, mit érdemes tanítani? A memorizálás helyett a kritikus gondolkodás lesz a legfontosabb készség?</p>
+            </div>
+
+            <div class="question-card">
+                <div class="icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                </div>
+                <h3>Lehet az MI-nek tudata?</h3>
+                <p>Ha egy MI úgy válaszol, mintha érezne, az valós érzelem vagy csak szimuláció? Honnan tudjuk az eltérést?</p>
+            </div>
+
+            <div class="question-card">
+                <div class="icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </div>
+                <h3>Milyen munkahelyek maradnak meg?</h3>
+                <p>Az MI átveszi a rutinfeladatokat. Mely szakmák tűnnek el, és milyen új területek nyílnak meg? Hogyan készüljünk fel?</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
+                </div>
+                <div>
+                    <strong>Mi és a MI</strong>
+                    <p style="font-size: 12px; color: #64748B;">Digitális Témahét 2026</p>
+                </div>
+            </div>
+            <div class="footer-text">
+                <p>Készült a 3D Digitális Diák Derbi versenyére</p>
+                <p class="small">MSzC Gépészeti Technikum és Kollégium</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simább görgetés a linkekhez
+        document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                var targetId = this.getAttribute('href');
+                var target = document.querySelector(targetId);
+                
+                if (target) {
+                    var offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
